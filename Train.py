@@ -151,7 +151,7 @@ def train(train_loader, model, optimizer, epoch, test_path):
     save_path = (opt.train_save)
     if not os.path.exists(save_path):
         os.makedirs(save_path)
-    torch.save(model.state_dict(), save_path +str(epoch)+ 'PolypPVT3.pth')
+    torch.save(model.state_dict(), save_path +str(epoch)+ 'PolypPVT4.pth')
     # choose the best model
 
     global dict_plot
@@ -172,14 +172,14 @@ def train(train_loader, model, optimizer, epoch, test_path):
         if meandiceA > best:
             best = meandiceA
             PATH = f'/content/drive/MyDrive/DC/pretrained_path/'
-            torch.save(model.state_dict(), PATH + 'PolypPVT3.pth')
-            torch.save(model.state_dict(), PATH + 'PolypPVT-best3.pth')
+            torch.save(model.state_dict(), PATH + 'PolypPVT4.pth')
+            torch.save(model.state_dict(), PATH + 'PolypPVT-best4.pth')
             print('##############################################################################best', best)
             logging.info('##############################################################################best:{}'.format(best))
        
     
     
-def save_checkpoint(state, filename = "my_checkpoint3.pth.tar"):
+def save_checkpoint(state, filename = "my_checkpoint4.pth.tar"):
     path = f'/content/drive/MyDrive/DC/{filename}' #/my_checkpoint.pth.tar'
     print("=>Saving Checkpoint")
     torch.save(state, path)
@@ -292,7 +292,7 @@ if __name__ == '__main__':
                         default=100, help='epoch number')
 
     parser.add_argument('--lr', type=float,
-                        default=3e-4, help='learning rate')
+                        default=1e-4, help='learning rate')
 
     parser.add_argument('--optimizer', type=str,
                         default='AdamW', help='choosing optimizer AdamW or SGD')
@@ -310,10 +310,10 @@ if __name__ == '__main__':
                         default=0.5, help='gradient clipping margin')
 
     parser.add_argument('--decay_rate', type=float,
-                        default=1e-2, help='decay rate of learning rate')
+                        default=3e-3, help='decay rate of learning rate')
 
     parser.add_argument('--decay_epoch', type=int,
-                        default=30, help='every n epochs decay learning rate')
+                        default=20, help='every n epochs decay learning rate')
 
     parser.add_argument('--train_path', type=str,
                         default='./dataset/TrainDataset/',
@@ -355,7 +355,7 @@ if __name__ == '__main__':
 
     print("#" * 20, "Start Training", "#" * 20)
     if load_model:
-        pth = f'/content/drive/MyDrive/DC/my_checkpoint3.pth.tar'
+        pth = f'/content/drive/MyDrive/DC/my_checkpoint4.pth.tar'
         if os.path.isfile(pth) == True:
             load_checkpoint(torch.load(pth))       #"my_checkpoint.pth.tar"
 
