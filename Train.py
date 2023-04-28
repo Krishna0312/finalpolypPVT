@@ -341,7 +341,7 @@ if __name__ == '__main__':
     params = model.parameters()
 
     if opt.optimizer == 'AdamW':
-        optimizer = torch.optim.AdamW(params, opt.lr, weight_decay=1e-2)
+        optimizer = torch.optim.AdamW(params, opt.lr, weight_decay=3e-3)                                       ####### change decay here #########
     else:
         optimizer = torch.optim.SGD(params, opt.lr, weight_decay=1e-4, momentum=0.9)
 
