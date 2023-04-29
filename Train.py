@@ -310,7 +310,7 @@ if __name__ == '__main__':
                         default=0.5, help='gradient clipping margin')
 
     parser.add_argument('--decay_rate', type=float,
-                        default=3e-3, help='decay rate of learning rate')
+                        default=1e-3, help='decay rate of learning rate')
 
     parser.add_argument('--decay_epoch', type=int,
                         default=25, help='every n epochs decay learning rate')
@@ -341,7 +341,7 @@ if __name__ == '__main__':
     params = model.parameters()
 
     if opt.optimizer == 'AdamW':
-        optimizer = torch.optim.AdamW(params, opt.lr, weight_decay=3e-3)                                       ####### change decay here #########
+        optimizer = torch.optim.AdamW(params, opt.lr, weight_decay=1e-3)                                       ####### change decay here #########
     else:
         optimizer = torch.optim.SGD(params, opt.lr, weight_decay=1e-4, momentum=0.9)
 
